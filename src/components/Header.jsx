@@ -8,6 +8,10 @@ import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 
+import { Image } from 'next/image'
+
+import deptoLogo from '@/images/depto.png'
+
 function MobileNavLink({ href, children }) {
   return (
     <Popover.Button as={Link} href={href} className="block w-full p-2">
@@ -96,6 +100,14 @@ export function Header() {
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
             <Link href="#" aria-label="Home">
+              {/* <Image
+                className="h-10 w-auto"
+                src={deptoLogo}
+                alt="Picture of the author"
+                width="350px"
+                height="300px"
+                unoptimized
+              /> */}
               <Logo className="h-10 w-auto" />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
