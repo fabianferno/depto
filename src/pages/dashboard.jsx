@@ -2,6 +2,39 @@ import { Fragment } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import Head from 'next/head'
 import Link from 'next/link'
+import Huddle from '@/components/Huddle'
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
+
+const people = [
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'janecooper@example.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  // Generate more people here
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'janecooper@hmail.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'janecooper@hmail.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+]
 
 import { BasicLayout } from '@/components/BasicLayout'
 
@@ -19,11 +52,10 @@ import {
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 const user = {
-  name: 'Chelsea Hagon',
-  email: 'chelsea.hagon@example.com',
-  role: 'Human Resources Manager',
-  imageUrl:
-    'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  name: 'Fabian Ferno',
+  email: 'hello@fabianferno.com',
+  role: 'DEPTO member',
+  imageUrl: 'https://avatars.githubusercontent.com/u/57835412?v=4',
 }
 const navigation = [
   { name: 'Home', href: '#', current: true },
@@ -42,50 +74,7 @@ const stats = [
   { label: 'Sick days left', value: 4 },
   { label: 'Personal days left', value: 2 },
 ]
-const actions = [
-  {
-    icon: ClockIcon,
-    name: 'Request time off',
-    href: '#',
-    iconForeground: 'text-teal-700',
-    iconBackground: 'bg-teal-50',
-  },
-  {
-    icon: CheckBadgeIcon,
-    name: 'Benefits',
-    href: '#',
-    iconForeground: 'text-purple-700',
-    iconBackground: 'bg-purple-50',
-  },
-  {
-    icon: UsersIcon,
-    name: 'Schedule a one-on-one',
-    href: '#',
-    iconForeground: 'text-sky-700',
-    iconBackground: 'bg-sky-50',
-  },
-  {
-    icon: BanknotesIcon,
-    name: 'Payroll',
-    href: '#',
-    iconForeground: 'text-yellow-700',
-    iconBackground: 'bg-yellow-50',
-  },
-  {
-    icon: ReceiptRefundIcon,
-    name: 'Submit an expense',
-    href: '#',
-    iconForeground: 'text-rose-700',
-    iconBackground: 'bg-rose-50',
-  },
-  {
-    icon: AcademicCapIcon,
-    name: 'Training',
-    href: '#',
-    iconForeground: 'text-indigo-700',
-    iconBackground: 'bg-indigo-50',
-  },
-]
+
 const recentHires = [
   {
     name: 'Leonard Krasner',
@@ -151,7 +140,7 @@ export default function Dashboard() {
         <title>Patent - DEPTO</title>
       </Head>
       <BasicLayout title="Dashboard">
-        <main className="  pb-8">
+        <main className="pb-8">
           <div className="mx-auto ">
             <h1 className="sr-only">Profile</h1>
             {/* Main 3 column grid */}
@@ -187,12 +176,7 @@ export default function Dashboard() {
                           </div>
                         </div>
                         <div className="mt-5 flex justify-center sm:mt-0">
-                          <a
-                            href="#"
-                            className="flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                          >
-                            View profile
-                          </a>
+                          <Huddle meetCode="65a1sd5a1" />
                         </div>
                       </div>
                     </div>
@@ -210,78 +194,229 @@ export default function Dashboard() {
                   </div>
                 </section>
 
-                {/* Actions panel */}
+                <div className="mt-10 border-b border-gray-200 pb-5">
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">
+                    Patent Applications
+                  </h3>
+                  <p className="mt-2 max-w-4xl text-sm text-gray-500">
+                    Verify the patents listed in here to get rewarded. Get more
+                    rewards for being the verifier.
+                  </p>
+                </div>
+
+                {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
-                    <h2 className="sr-only" id="quick-links-title">
-                      Quick links
-                    </h2>
-                    {actions.map((action, actionIdx) => (
-                      <div
-                        key={action.name}
-                        className={classNames(
-                          actionIdx === 0
-                            ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none'
-                            : '',
-                          actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
-                          actionIdx === actions.length - 2
-                            ? 'sm:rounded-bl-lg'
-                            : '',
-                          actionIdx === actions.length - 1
-                            ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none'
-                            : '',
-                          'group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500'
-                        )}
-                      >
-                        <div>
-                          <span
-                            className={classNames(
-                              action.iconBackground,
-                              action.iconForeground,
-                              'inline-flex rounded-lg p-3 ring-4 ring-white'
-                            )}
-                          >
-                            <action.icon
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </div>
-                        <div className="mt-8">
-                          <h3 className="text-lg font-medium">
-                            <a
-                              href={action.href}
-                              className="focus:outline-none"
-                            >
-                              {/* Extend touch target to entire panel */}
-                              <span
-                                className="absolute inset-0"
-                                aria-hidden="true"
-                              />
-                              {action.name}
-                            </a>
-                          </h3>
-                          <p className="mt-2 text-sm text-gray-500">
-                            Doloribus dolores nostrum quia qui natus officia
-                            quod et dolorem. Sit repellendus qui ut at
-                            blanditiis et quo et molestiae.
-                          </p>
-                        </div>
-                        <span
-                          className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
-                          aria-hidden="true"
+                  <div className=" rounded-lg shadow ">
+                    <ul
+                      role="list"
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    >
+                      {people.map((person) => (
+                        <li
+                          key={person.email}
+                          className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
                         >
-                          <svg
-                            className="h-6 w-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-                          </svg>
-                        </span>
-                      </div>
-                    ))}
+                          <div className="flex w-full items-center justify-between space-x-6 p-6">
+                            <div className="flex-1 truncate">
+                              <div className="flex items-center space-x-3">
+                                <h3 className="truncate text-sm font-medium text-gray-900">
+                                  {person.name}
+                                </h3>
+                                <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                                  {person.role}
+                                </span>
+                              </div>
+                              <p className="mt-1 truncate text-sm text-gray-500">
+                                {person.title}
+                              </p>
+                            </div>
+                            <img
+                              className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
+                              src={person.imageUrl}
+                              alt=""
+                            />
+                          </div>
+                          <div>
+                            <div className="-mt-px flex divide-x divide-gray-200">
+                              <div className="flex w-0 flex-1">
+                                <a
+                                  href={`mailto:${person.email}`}
+                                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                                >
+                                  <EnvelopeIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="ml-3">Email</span>
+                                </a>
+                              </div>
+                              <div className="-ml-px flex w-0 flex-1">
+                                <a
+                                  href={`tel:${person.telephone}`}
+                                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                                >
+                                  <PhoneIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="ml-3">Call</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+
+                <div className="mt-10 border-b border-gray-200 pb-5">
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">
+                    Validate Approved Patents
+                  </h3>
+                  <p className="mt-2 max-w-4xl text-sm text-gray-500">
+                    Validate
+                  </p>
+                </div>
+
+                {/* Patent Applications panel */}
+                <section aria-labelledby="quick-links-title">
+                  <div className=" rounded-lg shadow ">
+                    <ul
+                      role="list"
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    >
+                      {people.map((person) => (
+                        <li
+                          key={person.email}
+                          className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                        >
+                          <div className="flex w-full items-center justify-between space-x-6 p-6">
+                            <div className="flex-1 truncate">
+                              <div className="flex items-center space-x-3">
+                                <h3 className="truncate text-sm font-medium text-gray-900">
+                                  {person.name}
+                                </h3>
+                                <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                                  {person.role}
+                                </span>
+                              </div>
+                              <p className="mt-1 truncate text-sm text-gray-500">
+                                {person.title}
+                              </p>
+                            </div>
+                            <img
+                              className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
+                              src={person.imageUrl}
+                              alt=""
+                            />
+                          </div>
+                          <div>
+                            <div className="-mt-px flex divide-x divide-gray-200">
+                              <div className="flex w-0 flex-1">
+                                <a
+                                  href={`mailto:${person.email}`}
+                                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                                >
+                                  <EnvelopeIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="ml-3">Email</span>
+                                </a>
+                              </div>
+                              <div className="-ml-px flex w-0 flex-1">
+                                <a
+                                  href={`tel:${person.telephone}`}
+                                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                                >
+                                  <PhoneIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="ml-3">Call</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+
+                <div className="mt-10 border-b border-gray-200 pb-5">
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">
+                    False Claim Patents
+                  </h3>
+                  <p className="mt-2 max-w-4xl text-sm text-gray-500">
+                    Review patents marked as False claims.
+                  </p>
+                </div>
+
+                {/* Patent Applications panel */}
+                <section aria-labelledby="quick-links-title">
+                  <div className=" rounded-lg shadow ">
+                    <ul
+                      role="list"
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    >
+                      {people.map((person) => (
+                        <li
+                          key={person.email}
+                          className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                        >
+                          <div className="flex w-full items-center justify-between space-x-6 p-6">
+                            <div className="flex-1 truncate">
+                              <div className="flex items-center space-x-3">
+                                <h3 className="truncate text-sm font-medium text-gray-900">
+                                  {person.name}
+                                </h3>
+                                <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                                  {person.role}
+                                </span>
+                              </div>
+                              <p className="mt-1 truncate text-sm text-gray-500">
+                                {person.title}
+                              </p>
+                            </div>
+                            <img
+                              className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
+                              src={person.imageUrl}
+                              alt=""
+                            />
+                          </div>
+                          <div>
+                            <div className="-mt-px flex divide-x divide-gray-200">
+                              <div className="flex w-0 flex-1">
+                                <a
+                                  href={`mailto:${person.email}`}
+                                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                                >
+                                  <EnvelopeIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="ml-3">Email</span>
+                                </a>
+                              </div>
+                              <div className="-ml-px flex w-0 flex-1">
+                                <a
+                                  href={`tel:${person.telephone}`}
+                                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+                                >
+                                  <PhoneIcon
+                                    className="h-5 w-5 text-gray-400"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="ml-3">Call</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </section>
               </div>

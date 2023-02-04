@@ -8,10 +8,14 @@ import logoStatamic from '@/images/logos/statamic.svg'
 import logoStaticKit from '@/images/logos/statickit.svg'
 import logoTransistor from '@/images/logos/transistor.svg'
 import logoTuple from '@/images/logos/tuple.svg'
+import logoDepto from '@/images/logos/depto.svg'
 
 export function Hero() {
   return (
     <Container className="pt-20 pb-16 text-center lg:pt-32">
+      <div className="flex justify-center py-5">
+        <Image height={200} src={logoDepto} alt={'depto'} unoptimized />
+      </div>
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
         Decntralized{' '}
         <span className="relative whitespace-nowrap text-blue-600">
