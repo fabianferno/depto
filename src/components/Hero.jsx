@@ -2,12 +2,13 @@ import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import logoLaravel from '@/images/logos/laravel.svg'
-import logoMirage from '@/images/logos/mirage.svg'
-import logoStatamic from '@/images/logos/statamic.svg'
-import logoStaticKit from '@/images/logos/statickit.svg'
-import logoTransistor from '@/images/logos/transistor.svg'
-import logoTuple from '@/images/logos/tuple.svg'
+
+import logoFEVM from '@/images/fevm.png'
+import logoFilecoin from '@/images/filecoin.png'
+import logoHuddle from '@/images/huddle.jpeg'
+import logoIPFS from '@/images/ipfs.png'
+import logoSpheron from '@/images/spheron.jpeg'
+import logoPush from '@/images/push.jpeg'
 
 export function Hero() {
   return (
@@ -32,7 +33,7 @@ export function Hero() {
         web.
       </p>
       <div className="mt-5 flex justify-center gap-x-6">
-        <Button href="/register">
+        <Button href="/dashboard">
           {' '}
           <svg
             aria-hidden="true"
@@ -53,14 +54,14 @@ export function Hero() {
         >
           {[
             [
-              { name: 'Transistor', logo: logoTransistor },
-              { name: 'Tuple', logo: logoTuple },
-              { name: 'StaticKit', logo: logoStaticKit },
+              { name: 'FEVM', logo: logoFEVM },
+              { name: 'Spheron', logo: logoSpheron },
+              { name: 'Huddle01', logo: logoHuddle },
             ],
             [
-              { name: 'Mirage', logo: logoMirage },
-              { name: 'Laravel', logo: logoLaravel },
-              { name: 'Statamic', logo: logoStatamic },
+              { name: 'Filecoin', logo: logoFilecoin },
+              { name: 'IPFS', logo: logoIPFS },
+              { name: 'Push Protocol', logo: logoPush },
             ],
           ].map((group, groupIndex) => (
             <li key={groupIndex}>
@@ -70,7 +71,12 @@ export function Hero() {
               >
                 {group.map((company) => (
                   <li key={company.name} className="flex">
-                    <Image src={company.logo} alt={company.name} unoptimized />
+                    <Image
+                      src={company.logo}
+                      className="w-20 opacity-80 grayscale filter hover:opacity-100"
+                      alt={company.name}
+                      unoptimized
+                    />
                   </li>
                 ))}
               </ul>

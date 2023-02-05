@@ -3,7 +3,7 @@ import { Menu, Popover, Transition } from '@headlessui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Huddle from '@/components/Huddle'
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
+import { EnvelopeIcon, PhoneIcon, LinkIcon } from '@heroicons/react/20/solid'
 
 const people = [
   {
@@ -75,31 +75,87 @@ const stats = [
   { label: 'Personal days left', value: 2 },
 ]
 
+const patent = {
+  title: 'Wrist Band Sanitizer Spray Apparatus',
+  organization: 'TVS Motor Company Limited',
+  date: '22/06/2020',
+  designNo: '2020-0001',
+  classNo: '28-99',
+  domain: 'Automobiles',
+  email: 'ram@hsbcasas.com',
+  mobile: '1234567890',
+  category: 'Corporate',
+}
+function Patent({ patent }) {
+  return (
+    <li
+      key={patent.email}
+      className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+    >
+      <div className="flex w-full items-center justify-between space-x-6 p-6">
+        <div className="flex-1">
+          <div className="flex items-center space-x-3">
+            <h3 className=" truncate text-sm font-medium text-gray-900">
+              {patent.organization}
+            </h3>{' '}
+            <div className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+              CL# {patent.classNo}
+            </div>
+            <img
+              className="h-10 w-10 flex-shrink-0 rounded-lg  bg-gray-300"
+              src={`https://ui-avatars.com/api/?background=4f46e5&color=fff&name=${patent.title}`}
+              alt=""
+            />{' '}
+          </div>
+
+          <p className="mt-1 truncate text-sm text-gray-500">{patent.title}</p>
+          <p className="mt-1 truncate text-sm text-gray-500">{patent.date}</p>
+          <p className="mt-1 truncate text-sm text-gray-500">
+            Design No. {patent.designNo}
+          </p>
+        </div>
+      </div>
+      <div>
+        <div className="-mt-px flex divide-x divide-gray-200">
+          <div className="flex w-0 flex-1">
+            <a
+              href={`mailto:${patent.email}`}
+              className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
+            >
+              <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              <span className="ml-3">View Patent</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  )
+}
 const recentHires = [
   {
     name: 'Leonard Krasner',
-    handle: 'leonardkrasner',
+    handle: '0x64574dDbe98813b23364704e0B00E2e71fC5aD17',
     imageUrl:
       'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
   },
   {
     name: 'Floyd Miles',
-    handle: 'floydmiles',
+    handle: '0x64574dDbe98813b23364704e0B00E2e71fC5aD17',
     imageUrl:
       'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
   },
   {
     name: 'Emily Selman',
-    handle: 'emilyselman',
+    handle: '0x64574dDbe98813b23364704e0B00E2e71fC5aD17',
     imageUrl:
       'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
   },
   {
     name: 'Kristin Watson',
-    handle: 'kristinwatson',
+    handle: '0x64574dDbe98813b23364704e0B00E2e71fC5aD17',
     imageUrl:
       'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     href: '#',
@@ -108,24 +164,31 @@ const recentHires = [
 const announcements = [
   {
     id: 1,
-    title: 'Office closed on July 2nd',
+    title: 'Hyperspace Beta is live! - Feb 2023',
     href: '#',
     preview:
-      'Cum qui rem deleniti. Suscipit in dolor veritatis sequi aut. Vero ut earum quis deleniti. Ut a sunt eum cum ut repudiandae possimus. Nihil ex tempora neque cum consectetur dolores.',
+      'Bounty contract architecture where an SP can store the data and claim his rewards on Hyperspace testnet.',
   },
   {
     id: 2,
-    title: 'New password policy',
+    title: 'Mainnet launch - April 2023',
     href: '#',
     preview:
-      'Alias inventore ut autem optio voluptas et repellendus. Facere totam quaerat quam quo laudantium cumque eaque excepturi vel. Accusamus maxime ipsam reprehenderit rerum id repellendus rerum. Culpa cum vel natus. Est sit autem mollitia.',
+      'Mainnet deployment with events indexing and optimized contracts - Beta Launch',
   },
   {
     id: 3,
-    title: 'Office closed on July 2nd',
+    title: 'Bounty Contract v2 - July 2023',
     href: '#',
     preview:
-      'Tenetur libero voluptatem rerum occaecati qui est molestiae exercitationem. Voluptate quisquam iure assumenda consequatur ex et recusandae. Alias consectetur voluptatibus. Accusamus a ab dicta et. Consequatur quis dignissimos voluptatem nisi.',
+      'Creating storage deals via actor calls replacing the bounty contract architecture - Beta Launch',
+  },
+  {
+    id: 4,
+    title: 'Staking for Patent Validation - Dec 2023',
+    href: '#',
+    preview:
+      'DAO members staking mechanism for improved validation/verification and FIL slashing for bad acting - Production launch',
   },
 ]
 
@@ -206,68 +269,14 @@ export default function Dashboard() {
 
                 {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <div className=" rounded-lg shadow ">
-                    <ul
-                      role="list"
-                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                      {people.map((person) => (
-                        <li
-                          key={person.email}
-                          className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
-                        >
-                          <div className="flex w-full items-center justify-between space-x-6 p-6">
-                            <div className="flex-1 truncate">
-                              <div className="flex items-center space-x-3">
-                                <h3 className="truncate text-sm font-medium text-gray-900">
-                                  {person.name}
-                                </h3>
-                                <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                                  {person.role}
-                                </span>
-                              </div>
-                              <p className="mt-1 truncate text-sm text-gray-500">
-                                {person.title}
-                              </p>
-                            </div>
-                            <img
-                              className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
-                              src={person.imageUrl}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <div className="-mt-px flex divide-x divide-gray-200">
-                              <div className="flex w-0 flex-1">
-                                <a
-                                  href={`mailto:${person.email}`}
-                                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-                                >
-                                  <EnvelopeIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span className="ml-3">Email</span>
-                                </a>
-                              </div>
-                              <div className="-ml-px flex w-0 flex-1">
-                                <a
-                                  href={`tel:${person.telephone}`}
-                                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-                                >
-                                  <PhoneIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span className="ml-3">Call</span>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul
+                    role="list"
+                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+                  >
+                    <Patent patent={patent} />
+                    <Patent patent={patent} />
+                    <Patent patent={patent} />
+                  </ul>
                 </section>
 
                 <div className="mt-10 border-b border-gray-200 pb-5">
@@ -281,68 +290,14 @@ export default function Dashboard() {
 
                 {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <div className=" rounded-lg shadow ">
-                    <ul
-                      role="list"
-                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                      {people.map((person) => (
-                        <li
-                          key={person.email}
-                          className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
-                        >
-                          <div className="flex w-full items-center justify-between space-x-6 p-6">
-                            <div className="flex-1 truncate">
-                              <div className="flex items-center space-x-3">
-                                <h3 className="truncate text-sm font-medium text-gray-900">
-                                  {person.name}
-                                </h3>
-                                <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                                  {person.role}
-                                </span>
-                              </div>
-                              <p className="mt-1 truncate text-sm text-gray-500">
-                                {person.title}
-                              </p>
-                            </div>
-                            <img
-                              className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
-                              src={person.imageUrl}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <div className="-mt-px flex divide-x divide-gray-200">
-                              <div className="flex w-0 flex-1">
-                                <a
-                                  href={`mailto:${person.email}`}
-                                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-                                >
-                                  <EnvelopeIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span className="ml-3">Email</span>
-                                </a>
-                              </div>
-                              <div className="-ml-px flex w-0 flex-1">
-                                <a
-                                  href={`tel:${person.telephone}`}
-                                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-                                >
-                                  <PhoneIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span className="ml-3">Call</span>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul
+                    role="list"
+                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+                  >
+                    <Patent patent={patent} />
+                    <Patent patent={patent} />
+                    <Patent patent={patent} />
+                  </ul>
                 </section>
 
                 <div className="mt-10 border-b border-gray-200 pb-5">
@@ -356,68 +311,14 @@ export default function Dashboard() {
 
                 {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <div className=" rounded-lg shadow ">
-                    <ul
-                      role="list"
-                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                      {people.map((person) => (
-                        <li
-                          key={person.email}
-                          className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
-                        >
-                          <div className="flex w-full items-center justify-between space-x-6 p-6">
-                            <div className="flex-1 truncate">
-                              <div className="flex items-center space-x-3">
-                                <h3 className="truncate text-sm font-medium text-gray-900">
-                                  {person.name}
-                                </h3>
-                                <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                                  {person.role}
-                                </span>
-                              </div>
-                              <p className="mt-1 truncate text-sm text-gray-500">
-                                {person.title}
-                              </p>
-                            </div>
-                            <img
-                              className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300"
-                              src={person.imageUrl}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <div className="-mt-px flex divide-x divide-gray-200">
-                              <div className="flex w-0 flex-1">
-                                <a
-                                  href={`mailto:${person.email}`}
-                                  className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-                                >
-                                  <EnvelopeIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span className="ml-3">Email</span>
-                                </a>
-                              </div>
-                              <div className="-ml-px flex w-0 flex-1">
-                                <a
-                                  href={`tel:${person.telephone}`}
-                                  className="relative inline-flex w-0 flex-1 items-center justify-center rounded-br-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
-                                >
-                                  <PhoneIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                  />
-                                  <span className="ml-3">Call</span>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul
+                    role="list"
+                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+                  >
+                    <Patent patent={patent} />
+                    <Patent patent={patent} />
+                    <Patent patent={patent} />
+                  </ul>
                 </section>
               </div>
 
@@ -431,7 +332,7 @@ export default function Dashboard() {
                         className="text-base font-medium text-gray-900"
                         id="announcements-title"
                       >
-                        Announcements
+                        Roadmap
                       </h2>
                       <div className="mt-6 flow-root">
                         <ul
@@ -467,7 +368,7 @@ export default function Dashboard() {
                           href="#"
                           className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
                         >
-                          View all
+                          Join our discord for more updates
                         </a>
                       </div>
                     </div>
@@ -482,7 +383,7 @@ export default function Dashboard() {
                         className="text-base font-medium text-gray-900"
                         id="recent-hires-title"
                       >
-                        Recent Hires
+                        Validators
                       </h2>
                       <div className="mt-6 flow-root">
                         <ul
@@ -504,7 +405,7 @@ export default function Dashboard() {
                                     {person.name}
                                   </p>
                                   <p className="truncate text-sm text-gray-500">
-                                    {'@' + person.handle}
+                                    {person.handle}
                                   </p>
                                 </div>
                                 <div>

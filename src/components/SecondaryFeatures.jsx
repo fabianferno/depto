@@ -4,17 +4,17 @@ import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import screenshotContacts from '@/images/screenshots/contacts.png'
-import screenshotInventory from '@/images/screenshots/inventory.png'
-import screenshotProfitLoss from '@/images/screenshots/profit-loss.png'
+import screenshotLifecycle from '@/images/screenshots/lifecycle.png'
+import screenshotContractflow from '@/images/screenshots/user-flow.png'
+import screenshotUserflow from '@/images/screenshots/contract-flow.png'
 
 const features = [
   {
-    name: 'Reporting',
-    summary: 'Stay on top of things with always up-to-date reporting features.',
+    name: 'User Flow',
+    summary: 'Intuitive user flow for easy onboarding',
     description:
-      'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
-    image: screenshotProfitLoss,
+      'Intuitive user flow for easy onboarding. Interactions are designed to be as simple as possible. Thanks to our intuitive user flow, you can onboard your users in no time.',
+    image: screenshotUserflow,
     icon: function ReportingIcon() {
       let id = useId()
       return (
@@ -44,12 +44,12 @@ const features = [
     },
   },
   {
-    name: 'Inventory',
+    name: 'Contract Flow',
     summary:
-      'Never lose track of what’s in stock with accurate inventory tracking.',
+      'Governance and Validation, right on the contracts where they belong.',
     description:
-      'We don’t offer this as part of our software but that statement is inarguably true. Accurate inventory tracking would help you for sure.',
-    image: screenshotInventory,
+      'Governance and Validation, right on the contracts where they belong. We help you manage it. From the start.',
+    image: screenshotContractflow,
     icon: function InventoryIcon() {
       return (
         <>
@@ -72,12 +72,11 @@ const features = [
     },
   },
   {
-    name: 'Contacts',
-    summary:
-      'Organize all of your contacts, service providers, and invoices in one place.',
+    name: 'Patent Lifecycle',
+    summary: 'Life is a journey, and so is your patent. ',
     description:
-      'This also isn’t actually a feature, it’s just some friendly advice. We definitely recommend that you do this, you’ll feel really organized and professional.',
-    image: screenshotContacts,
+      'Life is a journey, and so is your patent. We help you manage it. From creation to expiration, we’ve got you covered with our patent lifecycle management.',
+    image: screenshotLifecycle,
     icon: function ContactsIcon() {
       return (
         <>
@@ -189,7 +188,7 @@ function FeaturesDesktop() {
                 >
                   <div className="w-[52.75rem] overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10">
                     <Image
-                      className="w-full"
+                      className="w-50 "
                       src={feature.image}
                       alt=""
                       sizes="52.75rem"
@@ -216,11 +215,10 @@ export function SecondaryFeatures() {
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Simplify everyday business tasks.
+            Know how it works.
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Because you’d probably be a little confused if we suggested you
-            complicate your everyday business tasks instead.
+            Because you’d probably be a little confused if we didn’t explain it.
           </p>
         </div>
         <FeaturesMobile />

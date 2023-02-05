@@ -95,12 +95,12 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <a href="#" aria-label="Home">
-              <Logo className="h-10 w-auto" />
-              {/* <Image height={200} src={logoDepto} alt={'depto'} unoptimized /> */}
-            </a>
+            <Logo className="h-10 w-auto" />
             <div className="hidden md:flex md:gap-x-6">
-              <h4></h4>
+              <h4>
+                Built for{' '}
+                <span className="font-bold">FVM Space Warp 2023 💫</span>
+              </h4>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">

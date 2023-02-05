@@ -11,60 +11,33 @@ const testimonials = [
   [
     {
       content:
-        'TaxPal is so easy to use I can’t help but wonder if it’s really doing the things the government expects me to do.',
+        'DEPTO is the best thing that has ever happened to me. I can’t believe I didn’t start using it sooner. I’m going to tell everyone I know about it.',
       author: {
         name: 'Sheryl Berge',
         role: 'CEO at Lynch LLC',
         image: avatarImage1,
       },
     },
-    {
-      content:
-        'I’m trying to get a hold of someone in support, I’m in a lot of trouble right now and they are saying it has something to do with my books. Please get back to me right away.',
-      author: {
-        name: 'Amy Hahn',
-        role: 'Director at Velocity Industries',
-        image: avatarImage4,
-      },
-    },
   ],
   [
     {
       content:
-        'The best part about TaxPal is every time I pay my employees, my bank balance doesn’t go down like it used to. Looking forward to spending this extra cash when I figure out why my card is being declined.',
+        'The best part about DEPTO is that I don’t have to think about it. It just works. Patents on the blockchain? Who would have thought?',
       author: {
         name: 'Leland Kiehn',
         role: 'Founder of Kiehn and Sons',
         image: avatarImage5,
       },
     },
-    {
-      content:
-        'There are so many things I had to do with my old software that I just don’t do at all with TaxPal. Suspicious but I can’t say I don’t love it.',
-      author: {
-        name: 'Erin Powlowski',
-        role: 'COO at Armstrong Inc',
-        image: avatarImage2,
-      },
-    },
   ],
   [
     {
       content:
-        'I used to have to remit tax to the EU and with TaxPal I somehow don’t have to do that anymore. Nervous to travel there now though.',
+        'I’m so glad I switched to DEPTO. It’s made my life so much easier. I can’t imagine going back to the old way of doing things.',
       author: {
         name: 'Peter Renolds',
         role: 'Founder of West Inc',
         image: avatarImage3,
-      },
-    },
-    {
-      content:
-        'This is the fourth email I’ve sent to your support team. I am literally being held in jail for tax fraud. Please answer your damn emails, this is important.',
-      author: {
-        name: 'Amy Hahn',
-        role: 'Director at Velocity Industries',
-        image: avatarImage4,
       },
     },
   ],
@@ -88,12 +61,11 @@ export function Testimonials() {
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Loved by businesses worldwide.
+            Loved by people worldwide.
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Our software is so simple that people can’t help but fall in love
-            with it. Simplicity is easy when you just skip tons of
-            mission-critical features.
+            Nah, these people don&apos;t exist, but we&apos;re pretty sure real
+            people would love it.
           </p>
         </div>
         <ul

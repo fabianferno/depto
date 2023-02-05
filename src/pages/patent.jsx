@@ -11,6 +11,23 @@ import {
   UserIcon,
 } from '@heroicons/react/20/solid'
 
+const patent = {
+  title: 'Wrist Band Sanitizer Spray Apparatus',
+  classNo: '28-99',
+  organization: 'TVS Motor Company Limited',
+  nationality: 'India',
+  category: 'Corporate',
+  domain: 'Automobiles',
+  previousId: '2020-0001',
+  email: 'ram@hsbcasas.com',
+  mobile: '1234567890',
+  address: '123, Main Street, Egmore, Chennai - 600008, Tamil Nadu, India',
+  created_date: '2020-06-25',
+  designNo: '2020-0001',
+  description:
+    'A wrist band sanitizer spray apparatus for spraying sanitizer on the hands of the user. The apparatus comprises a wrist band having a spray nozzle attached to it. The spray nozzle is connected to a reservoir containing sanitizer. The reservoir is connected to a pump which is operated by a battery. The battery is charged by a solar panel. The apparatus is worn on the wrist of the user and the user can spray sanitizer on his hands by pressing the pump.',
+}
+
 const user = {
   name: 'Whitney Francis',
   email: 'whitney@example.com',
@@ -19,8 +36,8 @@ const user = {
 }
 
 const attachments = [
-  { name: 'resume_front_end_developer.pdf', href: '#' },
-  { name: 'coverletter_front_end_developer.pdf', href: '#' },
+  { name: 'design_v1.pdf', href: '#' },
+  { name: 'design-rev-v2.pdf', href: '#' },
 ]
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: 'bg-gray-400' },
@@ -31,40 +48,24 @@ const timeline = [
   {
     id: 1,
     type: eventTypes.applied,
-    content: 'Applied to',
-    target: 'Front End Developer',
+    content: 'Minted application',
+    target: 'Patent #' + patent.designNo,
     date: 'Sep 20',
     datetime: '2020-09-20',
   },
   {
     id: 2,
     type: eventTypes.advanced,
-    content: 'Advanced to phone screening by',
-    target: 'Bethany Blake',
+    content: 'Verified by',
+    target: 'DEPTO DAO agent',
     date: 'Sep 22',
     datetime: '2020-09-22',
   },
   {
-    id: 3,
-    type: eventTypes.completed,
-    content: 'Completed phone screening with',
-    target: 'Martha Gardner',
-    date: 'Sep 28',
-    datetime: '2020-09-28',
-  },
-  {
-    id: 4,
-    type: eventTypes.advanced,
-    content: 'Advanced to interview by',
-    target: 'Bethany Blake',
-    date: 'Sep 30',
-    datetime: '2020-09-30',
-  },
-  {
     id: 5,
     type: eventTypes.completed,
-    content: 'Completed interview with',
-    target: 'Katherine Snyder',
+    content: 'Validate and approved ',
+    target: 'Patent #' + patent.designNo,
     date: 'Oct 4',
     datetime: '2020-10-04',
   },
@@ -102,7 +103,7 @@ export default function CreatePatent() {
       <Head>
         <title>Patent - DEPTO</title>
       </Head>
-      <BasicLayout title="Patent">
+      <BasicLayout title={`Patent #${patent.designNo}`}>
         <main className="py-2">
           {/* Page header */}
           <div className="mx-auto max-w-3xl px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
@@ -111,7 +112,7 @@ export default function CreatePatent() {
                 <div className="relative">
                   <img
                     className="h-16 w-16 rounded-full"
-                    src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
+                    src={`https://ui-avatars.com/api/?background=4f46e5&color=fff&name=${patent.title}`}
                     alt=""
                   />
                   <span
@@ -122,14 +123,17 @@ export default function CreatePatent() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">
-                  Ricardo Cooper
+                  {patent.title}
                 </h1>
                 <p className="text-sm font-medium text-gray-500">
-                  Applied for{' '}
+                  Applied by{' '}
                   <a href="#" className="text-gray-900">
-                    Front End Developer
+                    {patent.organization}
                   </a>{' '}
-                  on <time dateTime="2020-08-25">August 25, 2020</time>
+                  on{' '}
+                  <time dateTime={patent.created_date}>
+                    {patent.created_date}
+                  </time>
                 </p>
               </div>
             </div>
@@ -138,7 +142,7 @@ export default function CreatePatent() {
                 type="button"
                 className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
               >
-                Disqualify
+                Propose false claim
               </button>
               <button
                 type="button"
@@ -154,40 +158,74 @@ export default function CreatePatent() {
               {/* Description list*/}
               <section aria-labelledby="applicant-information-title">
                 <div className="bg-white shadow sm:rounded-lg">
-                  <div className="px-4 py-5 sm:px-6">
-                    <h2
-                      id="applicant-information-title"
-                      className="text-lg font-medium leading-6 text-gray-900"
-                    >
-                      Applicant Information
-                    </h2>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                      Personal details and application.
-                    </p>
+                  <div className="flex items-end justify-between px-4 py-5 sm:px-6">
+                    <div>
+                      <h2
+                        id="applicant-information-title"
+                        className="text-lg font-medium leading-6 text-gray-900"
+                      >
+                        Patent Information
+                      </h2>
+                      <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                        Owner and application details
+                      </p>
+                    </div>
+
+                    <img
+                      className="h-36 rounded-lg"
+                      src={`https://m.media-amazon.com/images/I/71LvFRKpkhL._SL1500_.jpg`}
+                      alt=""
+                    />
                   </div>
                   <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                     <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
-                          Application for
+                          Class Number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          Backend Developer
+                          # {patent.classNo}
                         </dd>
                       </div>
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
-                          Email address
+                          Nationality
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          ricardocooper@example.com
+                          {patent.nationality}
                         </dd>
                       </div>
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
-                          Salary expectation
+                          Category
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900">$120,000</dd>
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {patent.category}
+                        </dd>
+                      </div>
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Design Domain
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {patent.domain}
+                        </dd>
+                      </div>
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Previous ID
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {patent.previousId}
+                        </dd>
+                      </div>
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Email
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {patent.email}
+                        </dd>
                       </div>
                       <div className="sm:col-span-1">
                         <dt className="text-sm font-medium text-gray-500">
@@ -199,17 +237,21 @@ export default function CreatePatent() {
                       </div>
                       <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500">
-                          About
+                          Description
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          Fugiat ipsum ipsum deserunt culpa aute sint do nostrud
-                          anim incididunt cillum culpa consequat. Excepteur qui
-                          ipsum aliquip consequat sint. Sit id mollit nulla
-                          mollit nostrud in ea officia proident. Irure nostrud
-                          pariatur mollit ad adipisicing reprehenderit deserunt
-                          qui eu.
+                          {patent.description}
                         </dd>
                       </div>
+                      <div className="sm:col-span-2">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Registered Address
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900">
+                          {patent.address}
+                        </dd>
+                      </div>
+
                       <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500">
                           Attachments
@@ -268,10 +310,10 @@ export default function CreatePatent() {
                         id="notes-title"
                         className="text-lg font-medium text-gray-900"
                       >
-                        Notes
+                        Comments - powered by Push Chat. (Coming soon)
                       </h2>
                     </div>
-                    <div className="px-4 py-6 sm:px-6">
+                    <div className="px-4 py-6 blur-sm sm:px-6">
                       <ul role="list" className="space-y-8">
                         {comments.map((comment) => (
                           <li key={comment.id}>
@@ -427,14 +469,6 @@ export default function CreatePatent() {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="justify-stretch mt-6 flex flex-col">
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Advance to offer
-                  </button>
                 </div>
               </div>
             </section>
