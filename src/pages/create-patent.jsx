@@ -14,7 +14,7 @@ import { PaperClipIcon } from '@heroicons/react/20/solid'
 
 export default function CreatePatent() {
   const { config } = usePrepareContractWrite({
-    address: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
+    address: '0x16CBC6Cb38D19B73A3b545109c70b2031d20EA37',
     abi: [
       {
         name: 'mint',
