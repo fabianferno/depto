@@ -24,7 +24,7 @@ const attachments = [
 ]
 const eventTypes = {
   applied: { icon: UserIcon, bgColorClass: 'bg-gray-400' },
-  advanced: { icon: HandThumbUpIcon, bgColorClass: 'bg-blue-500' },
+  advanced: { icon: HandThumbUpIcon, bgColorClass: 'bg-indigo-500' },
   completed: { icon: CheckIcon, bgColorClass: 'bg-green-500' },
 }
 const timeline = [
@@ -136,13 +136,13 @@ export default function CreatePatent() {
             <div className="justify-stretch mt-6 flex flex-col-reverse space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-y-0 sm:space-x-3 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
               >
                 Disqualify
               </button>
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
               >
                 Advance to offer
               </button>
@@ -236,7 +236,7 @@ export default function CreatePatent() {
                                 <div className="ml-4 flex-shrink-0">
                                   <a
                                     href={attachment.href}
-                                    className="font-medium text-blue-600 hover:text-blue-500"
+                                    className="font-medium text-indigo-600 hover:text-indigo-500"
                                   >
                                     Download
                                   </a>
@@ -335,7 +335,7 @@ export default function CreatePatent() {
                               id="comment"
                               name="comment"
                               rows={3}
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               placeholder="Add a note"
                               defaultValue={''}
                             />
@@ -353,7 +353,7 @@ export default function CreatePatent() {
                             </a>
                             <button
                               type="submit"
-                              className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                               Comment
                             </button>
@@ -431,7 +431,7 @@ export default function CreatePatent() {
                 <div className="justify-stretch mt-6 flex flex-col">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Advance to offer
                   </button>

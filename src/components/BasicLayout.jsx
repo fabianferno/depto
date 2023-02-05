@@ -1,9 +1,12 @@
 import backgroundImage from '@/images/background-features.jpg'
 import Image from 'next/image'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
+import logoDepto from '@/images/depto-white.png'
 
 import { Tab } from '@headlessui/react'
 import { Container } from '@/components/Container'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -14,7 +17,7 @@ const user = {
   imageUrl:
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
-const navigation = [
+let navigation = [
   { name: 'Dashboard', href: 'dashboard', current: true },
   { name: 'Patent', href: 'patent', current: false },
   { name: 'New', href: 'create-patent', current: false },
@@ -44,13 +47,14 @@ export function BasicLayout({ children, title }) {
                 <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
                   <div className="relative flex h-16 items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
                     <div className="flex items-center px-2 lg:px-0">
-                      <div className="flex-shrink-0">
-                        <img
-                          className="block h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
+                      <a href="/" className="flex-shrink-0">
+                        <Image
+                          className="-ml-3 block"
+                          height={50}
+                          src={logoDepto}
                           alt="Your Company"
                         />
-                      </div>
+                      </a>
                       <div className="hidden lg:ml-10 lg:block">
                         <div className="flex space-x-4">
                           {navigation.map((item) => (
@@ -71,28 +75,7 @@ export function BasicLayout({ children, title }) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
-                      <div className="w-full max-w-lg lg:max-w-xs">
-                        <label htmlFor="search" className="sr-only">
-                          Search
-                        </label>
-                        <div className="relative text-gray-400 focus-within:text-gray-600">
-                          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                            <MagnifyingGlassIcon
-                              className="h-5 w-5"
-                              aria-hidden="true"
-                            />
-                          </div>
-                          <input
-                            id="search"
-                            className="block w-full rounded-md border border-transparent bg-white py-2 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm"
-                            placeholder="Search"
-                            type="search"
-                            name="search"
-                          />
-                        </div>
-                      </div>
-                    </div>
+
                     <div className="flex lg:hidden">
                       {/* Mobile menu button */}
                       <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-indigo-200 hover:bg-indigo-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600">
@@ -119,6 +102,10 @@ export function BasicLayout({ children, title }) {
                           <span className="sr-only">View notifications</span>
                           <BellIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
+
+                        <div className="ml-2">
+                          <ConnectButton />
+                        </div>
 
                         {/* Profile dropdown */}
                         <Menu as="div" className="relative ml-3 flex-shrink-0">

@@ -8,10 +8,6 @@ import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 
-import { Image } from 'next/image'
-
-import deptoLogo from '@/images/depto.png'
-
 function MobileNavLink({ href, children }) {
   return (
     <Popover.Button as={Link} href={href} className="block w-full p-2">
@@ -99,31 +95,24 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link href="#" aria-label="Home">
-              {/* <Image
-                className="h-10 w-auto"
-                src={deptoLogo}
-                alt="Picture of the author"
-                width="350px"
-                height="300px"
-                unoptimized
-              /> */}
+            <a href="#" aria-label="Home">
               <Logo className="h-10 w-auto" />
-            </Link>
+              {/* <Image height={200} src={logoDepto} alt={'depto'} unoptimized /> */}
+            </a>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#features">Features</NavLink>
-              <NavLink href="#testimonials">Testimonials</NavLink>
-              <NavLink href="#pricing">Pricing</NavLink>
+              <h4></h4>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <NavLink href="/login">Sign in</NavLink>
-            </div>
-            <Button href="/register" color="blue">
-              <span>
-                Get started <span className="hidden lg:inline">today</span>
-              </span>
+            <Button href="/dashboard">
+              {' '}
+              <svg
+                aria-hidden="true"
+                className="h-3 w-3 flex-none fill-white group-active:fill-current"
+              >
+                <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
+              </svg>
+              <span className="ml-3">Launch dApp</span>
             </Button>
             <div className="-mr-1 md:hidden">
               <MobileNavigation />

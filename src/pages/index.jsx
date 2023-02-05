@@ -10,6 +10,8 @@ import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Testimonials } from '@/components/Testimonials'
 
+import { BasicLayout } from '@/components/BasicLayout'
+
 export default function Home() {
   return (
     <>
@@ -27,8 +29,8 @@ export default function Home() {
         <SecondaryFeatures />
         <CallToAction />
         <Testimonials />
-        <Pricing />
-        <Faqs />
+        {/* <Pricing /> */}
+        {/* <Faqs /> */}
       </main>
       <Footer />
     </>

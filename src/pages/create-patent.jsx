@@ -36,7 +36,7 @@ export default function CreatePatent() {
                           htmlFor="email-address"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Title
+                          Patent Title
                         </label>
                         <input
                           type="text"
