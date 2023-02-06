@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from 'mongodb'
+import { MongoClient } from 'mongodb'
 
 // Connection URL
 const client = new MongoClient(
@@ -10,24 +10,16 @@ const db = client.db(process.env.MONGO_DB_NAME || 'depto')
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     // Process a POST request
-    let member = req.body
+    let patent = req.body
     // console.log(member)
-    let result = await db.collection('members').insertOne(member)
+    let result = await db.collection('patents').insertOne(patent)
 
     res.status(200).json(result)
   } else if (req.method === 'GET') {
     // Handle any other HTTP method
-    let members = await db.collection('members').find().toArray()
-    // console.log(members)
-    res.status(200).json(members)
-  }
-  else if (req.method === 'DELETE') {
-    // Get User ID from request body
-    let address = req.body.address
-    // console.log(walletAddress)
-    // Delete the Patent
-    let result = await db.collection('members').deleteMany({ address: address })
-    res.status(200).json(result)
+    let patents = await db.collection('patents').find().toArray()
+    // console.log(patents)
+    res.status(200).json(patents)
   } else {
     res.status(405).json({ message: 'Method not allowed' })
   }
