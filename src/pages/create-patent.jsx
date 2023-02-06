@@ -3,16 +3,22 @@ import { NFTStorage } from 'nft.storage'
 
 import { useState, useEffect } from 'react'
 
+import { governorContract } from '@/contracts/helpers'
+
 import { BasicLayout } from '@/components/BasicLayout'
 import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
+  useContract,
+  useSigner,
 } from 'wagmi'
 
 import { PaperClipIcon } from '@heroicons/react/20/solid'
+import { ethers } from 'ethers'
 
 export default function CreatePatent() {
+  const { data: signer, isError, isLoading } = useSigner()
   const [acknowledge, setAcknowledge] = useState(false)
   const [metadataUrl, setMetadataUrl] = useState('')
   const [attachment, setAttachment] = useState(null)
@@ -38,26 +44,18 @@ export default function CreatePatent() {
     attachmentCid: '',
   })
 
-  const { config } = usePrepareContractWrite({
-    address: '0x16CBC6Cb38D19B73A3b545109c70b2031d20EA37',
-    abi: [
-      {
-        name: 'mint',
-        type: 'function',
-        stateMutability: 'nonpayable',
-        inputs: [],
-        outputs: [],
-      },
-    ],
-    functionName: 'mint',
-    args: [metadataUrl],
-    enabled: Boolean(metadataUrl),
+  const contract = useContract({
+    address: governorContract.address,
+    abi: governorContract.abi,
+    signerOrProvider: signer,
   })
 
-  const { data, write } = useContractWrite(config)
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  })
+  function mintPatent() {
+    let data = contract.applyPatent(metadataUrl, {
+      value: ethers.utils.parseEther('2'),
+    })
+    console.log(contract, data)
+  }
 
   const client = new NFTStorage({
     token:
@@ -673,21 +671,11 @@ export default function CreatePatent() {
                     <button
                       disabled={metadataUrl === ''}
                       type="button"
-                      onClick={() => write?.()}
+                      onClick={() => mintPatent()}
                       className={`inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-100`}
                     >
-                      {isLoading ? 'Minting Patent...' : 'Mint Patent'}
+                      Mint Patent
                     </button>
-                    {isSuccess && (
-                      <div>
-                        Successfully minted your NFT!
-                        <div>
-                          <a href={`https://etherscan.io/tx/${data?.hash}`}>
-                            Etherscan
-                          </a>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </form>
