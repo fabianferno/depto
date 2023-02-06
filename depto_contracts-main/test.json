@@ -1,0 +1,3289 @@
+{
+  "interface": {
+    "fragments": [
+      {
+        "name": null,
+        "type": "constructor",
+        "inputs": [
+          {
+            "name": "minDelay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "proposers",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "executors",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "admin",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "name": "CallExecuted",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "index",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "CallScheduled",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "index",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "delay",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "Cancelled",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "MinDelayChange",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "oldDuration",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "newDuration",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "RoleAdminChanged",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "previousAdminRole",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "newAdminRole",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "RoleGranted",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "sender",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "RoleRevoked",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "sender",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "CANCELLER_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "DEFAULT_ADMIN_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "EXECUTOR_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "PROPOSER_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "TIMELOCK_ADMIN_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "cancel",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "execute",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "payload",
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "executeBatch",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "values",
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "payloads",
+            "type": "bytes[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getMinDelay",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "duration",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getRoleAdmin",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getTimestamp",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "timestamp",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "grantRole",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "hasRole",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "hashOperation",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "hash",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "pure",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "hashOperationBatch",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "values",
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "payloads",
+            "type": "bytes[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "hash",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "pure",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "isOperation",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "registered",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "isOperationDone",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "done",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "isOperationPending",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "pending",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "isOperationReady",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "ready",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "onERC1155BatchReceived",
+        "constant": false,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "onERC1155Received",
+        "constant": false,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "onERC721Received",
+        "constant": false,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "renounceRole",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "revokeRole",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "schedule",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "delay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "scheduleBatch",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "values",
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "payloads",
+            "type": "bytes[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "delay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "supportsInterface",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "interfaceId",
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "updateDelay",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "newDelay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      }
+    ],
+    "_abiCoder": { "coerceFunc": null },
+    "functions": {
+      "CANCELLER_ROLE()": {
+        "type": "function",
+        "name": "CANCELLER_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "DEFAULT_ADMIN_ROLE()": {
+        "type": "function",
+        "name": "DEFAULT_ADMIN_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "EXECUTOR_ROLE()": {
+        "type": "function",
+        "name": "EXECUTOR_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "PROPOSER_ROLE()": {
+        "type": "function",
+        "name": "PROPOSER_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "TIMELOCK_ADMIN_ROLE()": {
+        "type": "function",
+        "name": "TIMELOCK_ADMIN_ROLE",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "cancel(bytes32)": {
+        "type": "function",
+        "name": "cancel",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "execute(address,uint256,bytes,bytes32,bytes32)": {
+        "type": "function",
+        "name": "execute",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "payload",
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "executeBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
+        "type": "function",
+        "name": "executeBatch",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "values",
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "payloads",
+            "type": "bytes[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "getMinDelay()": {
+        "type": "function",
+        "name": "getMinDelay",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "duration",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "getRoleAdmin(bytes32)": {
+        "type": "function",
+        "name": "getRoleAdmin",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "getTimestamp(bytes32)": {
+        "type": "function",
+        "name": "getTimestamp",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "timestamp",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "grantRole(bytes32,address)": {
+        "type": "function",
+        "name": "grantRole",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "hasRole(bytes32,address)": {
+        "type": "function",
+        "name": "hasRole",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "hashOperation(address,uint256,bytes,bytes32,bytes32)": {
+        "type": "function",
+        "name": "hashOperation",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "hash",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "pure",
+        "gas": null,
+        "_isFragment": true
+      },
+      "hashOperationBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
+        "type": "function",
+        "name": "hashOperationBatch",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "values",
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "payloads",
+            "type": "bytes[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "hash",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "pure",
+        "gas": null,
+        "_isFragment": true
+      },
+      "isOperation(bytes32)": {
+        "type": "function",
+        "name": "isOperation",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "registered",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "isOperationDone(bytes32)": {
+        "type": "function",
+        "name": "isOperationDone",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "done",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "isOperationPending(bytes32)": {
+        "type": "function",
+        "name": "isOperationPending",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "pending",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "isOperationReady(bytes32)": {
+        "type": "function",
+        "name": "isOperationReady",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "ready",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": {
+        "type": "function",
+        "name": "onERC1155BatchReceived",
+        "constant": false,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "onERC1155Received(address,address,uint256,uint256,bytes)": {
+        "type": "function",
+        "name": "onERC1155Received",
+        "constant": false,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "onERC721Received(address,address,uint256,bytes)": {
+        "type": "function",
+        "name": "onERC721Received",
+        "constant": false,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": null,
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "renounceRole(bytes32,address)": {
+        "type": "function",
+        "name": "renounceRole",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "revokeRole(bytes32,address)": {
+        "type": "function",
+        "name": "revokeRole",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "schedule(address,uint256,bytes,bytes32,bytes32,uint256)": {
+        "type": "function",
+        "name": "schedule",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "delay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "scheduleBatch(address[],uint256[],bytes[],bytes32,bytes32,uint256)": {
+        "type": "function",
+        "name": "scheduleBatch",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "targets",
+            "type": "address[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "address",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "address",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "values",
+            "type": "uint256[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "uint256",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "uint256",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "payloads",
+            "type": "bytes[]",
+            "indexed": null,
+            "components": null,
+            "arrayLength": -1,
+            "arrayChildren": {
+              "name": null,
+              "type": "bytes",
+              "indexed": null,
+              "components": null,
+              "arrayLength": null,
+              "arrayChildren": null,
+              "baseType": "bytes",
+              "_isParamType": true
+            },
+            "baseType": "array",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "delay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      "supportsInterface(bytes4)": {
+        "type": "function",
+        "name": "supportsInterface",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "interfaceId",
+            "type": "bytes4",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes4",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": null,
+        "_isFragment": true
+      },
+      "updateDelay(uint256)": {
+        "type": "function",
+        "name": "updateDelay",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "newDelay",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      }
+    },
+    "errors": {},
+    "events": {
+      "CallExecuted(bytes32,uint256,address,uint256,bytes)": {
+        "name": "CallExecuted",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "index",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "CallScheduled(bytes32,uint256,address,uint256,bytes,bytes32,uint256)": {
+        "name": "CallScheduled",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "index",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "target",
+            "type": "address",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "value",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "data",
+            "type": "bytes",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes",
+            "_isParamType": true
+          },
+          {
+            "name": "predecessor",
+            "type": "bytes32",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "delay",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "Cancelled(bytes32)": {
+        "name": "Cancelled",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "id",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "MinDelayChange(uint256,uint256)": {
+        "name": "MinDelayChange",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "oldDuration",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "newDuration",
+            "type": "uint256",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "RoleAdminChanged(bytes32,bytes32,bytes32)": {
+        "name": "RoleAdminChanged",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "previousAdminRole",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "newAdminRole",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "RoleGranted(bytes32,address,address)": {
+        "name": "RoleGranted",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "sender",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "RoleRevoked(bytes32,address,address)": {
+        "name": "RoleRevoked",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "role",
+            "type": "bytes32",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bytes32",
+            "_isParamType": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "sender",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      }
+    },
+    "structs": {},
+    "deploy": {
+      "name": null,
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "minDelay",
+          "type": "uint256",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null,
+          "baseType": "uint256",
+          "_isParamType": true
+        },
+        {
+          "name": "proposers",
+          "type": "address[]",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          "baseType": "array",
+          "_isParamType": true
+        },
+        {
+          "name": "executors",
+          "type": "address[]",
+          "indexed": null,
+          "components": null,
+          "arrayLength": -1,
+          "arrayChildren": {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          "baseType": "array",
+          "_isParamType": true
+        },
+        {
+          "name": "admin",
+          "type": "address",
+          "indexed": null,
+          "components": null,
+          "arrayLength": null,
+          "arrayChildren": null,
+          "baseType": "address",
+          "_isParamType": true
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "gas": null,
+      "_isFragment": true
+    },
+    "_isInterface": true
+  },
+  "provider": "<WrappedHardhatProvider>",
+  "signer": "<SignerWithAddress 0x71B43a66324C7b80468F1eE676E7FCDaF63eB6Ac>",
+  "callStatic": {},
+  "estimateGas": {},
+  "functions": {},
+  "populateTransaction": {},
+  "filters": {},
+  "_runningEvents": {},
+  "_wrappedEmits": {},
+  "address": "0x769B092250D57fa70d8553057B24efF846CCc2b2",
+  "resolvedAddress": {}
+}
