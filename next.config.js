@@ -4,6 +4,10 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  eslint: {
+    dirs: ['src'],
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = nextConfig
