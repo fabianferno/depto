@@ -1,24 +1,18 @@
 import Head from 'next/head'
 import { NFTStorage } from 'nft.storage'
+import axios from 'axios'
 
 import { useState, useEffect } from 'react'
 
-import { governorContract } from '@/contracts/helpers'
-
 import { BasicLayout } from '@/components/BasicLayout'
-import {
-  usePrepareContractWrite,
-  useContractWrite,
-  useWaitForTransaction,
-  useContract,
-  useSigner,
-} from 'wagmi'
-
-import { PaperClipIcon } from '@heroicons/react/20/solid'
+import { governorContract } from '@/contracts/helpers'
+import { useContract, useSigner } from 'wagmi'
 import { ethers } from 'ethers'
 
+import { PaperClipIcon } from '@heroicons/react/20/solid'
+
 export default function CreatePatent() {
-  const { data: signer, isError, isLoading } = useSigner()
+  const { data: signer } = useSigner()
   const [acknowledge, setAcknowledge] = useState(false)
   const [metadataUrl, setMetadataUrl] = useState('')
   const [attachment, setAttachment] = useState(null)
@@ -50,8 +44,8 @@ export default function CreatePatent() {
     signerOrProvider: signer,
   })
 
-  function mintPatent() {
-    let data = contract.applyPatent(metadataUrl, {
+  async function mintPatent() {
+    let data = await contract.applyPatent(metadataUrl, {
       value: ethers.utils.parseEther('2'),
     })
     console.log(contract, data)
@@ -92,6 +86,13 @@ export default function CreatePatent() {
         { type: 'application/json' }
       )
     )
+    await axios
+      .post('/api/patent', {
+        ...patent,
+        date: new Date().toISOString(),
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
     setMetadataUrl('ipfs://' + cid)
     setUploadingPatent(false)
   }
@@ -671,7 +672,7 @@ export default function CreatePatent() {
                     <button
                       disabled={metadataUrl === ''}
                       type="button"
-                      onClick={() => mintPatent()}
+                      onClick={async () => await mintPatent()}
                       className={`inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-100`}
                     >
                       Mint Patent

@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import { LinkIcon } from '@heroicons/react/20/solid'
 import { BasicLayout } from '@/components/BasicLayout'
+import axios from 'axios'
+
+import { useEffect, useState } from 'react'
 
 const patent = {
   title: 'Wrist Band Sanitizer Spray Apparatus',
@@ -51,7 +54,7 @@ function Patent({ patent }) {
         <div className="-mt-px flex divide-x divide-gray-200">
           <div className="flex w-0 flex-1">
             <a
-              href={`mailto:${patent.email}`}
+              href={`/patent?_id=${patent._id}`}
               className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
             >
               <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -65,6 +68,19 @@ function Patent({ patent }) {
 }
 
 export default function PatentDirectory() {
+  const [patents, setPatents] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    ;(async () => {
+      const { data } = await axios.get('/api/patents')
+
+      console.log(data)
+      setPatents(data)
+      setLoading(false)
+    })()
+  }, [])
+
   return (
     <>
       <Head>
@@ -87,16 +103,20 @@ export default function PatentDirectory() {
             </div>
           </div>
         </div>
-        <ul
-          role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          <Patent patent={patent} />
-          <Patent patent={patent} />
-          <Patent patent={patent} />
-          <Patent patent={patent} />
-          <Patent patent={patent} />
-        </ul>
+        {loading ? (
+          <div className="mt-20 flex items-center justify-center">
+            <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+          </div>
+        ) : (
+          <ul
+            role="list"
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {patents.map((patent) => (
+              <Patent key={patent.email} patent={patent} />
+            ))}
+          </ul>
+        )}
       </BasicLayout>
     </>
   )

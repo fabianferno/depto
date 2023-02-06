@@ -1,55 +1,14 @@
 import { Fragment } from 'react'
-import { Menu, Popover, Transition } from '@headlessui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Huddle from '@/components/Huddle'
 import { EnvelopeIcon, PhoneIcon, LinkIcon } from '@heroicons/react/20/solid'
+import axios from 'axios'
+import { PushProtocol } from '@/components/PushNotifications'
 
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@example.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // Generate more people here
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@hmail.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    role: 'Admin',
-    email: 'janecooper@hmail.com',
-    telephone: '+1-202-555-0170',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-]
+import { useEffect, useState } from 'react'
 
 import { BasicLayout } from '@/components/BasicLayout'
-
-import {
-  AcademicCapIcon,
-  BanknotesIcon,
-  Bars3Icon,
-  BellIcon,
-  CheckBadgeIcon,
-  ClockIcon,
-  ReceiptRefundIcon,
-  UsersIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
 const user = {
   name: 'Fabian Ferno',
@@ -57,35 +16,13 @@ const user = {
   role: 'DEPTO member',
   imageUrl: 'https://avatars.githubusercontent.com/u/57835412?v=4',
 }
-const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Profile', href: '#', current: false },
-  { name: 'Resources', href: '#', current: false },
-  { name: 'Company Directory', href: '#', current: false },
-  { name: 'Openings', href: '#', current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+
 const stats = [
-  { label: 'Vacation days left', value: 12 },
-  { label: 'Sick days left', value: 4 },
-  { label: 'Personal days left', value: 2 },
+  { label: 'Patents minted', value: 5 },
+  { label: 'Patents validated', value: 4 },
+  { label: 'Patents verified', value: 2 },
 ]
 
-const patent = {
-  title: 'Wrist Band Sanitizer Spray Apparatus',
-  organization: 'TVS Motor Company Limited',
-  date: '22/06/2020',
-  designNo: '2020-0001',
-  classNo: '28-99',
-  domain: 'Automobiles',
-  email: 'ram@hsbcasas.com',
-  mobile: '1234567890',
-  category: 'Corporate',
-}
 function Patent({ patent }) {
   return (
     <li
@@ -119,7 +56,7 @@ function Patent({ patent }) {
         <div className="-mt-px flex divide-x divide-gray-200">
           <div className="flex w-0 flex-1">
             <a
-              href={`mailto:${patent.email}`}
+              href={`/patent?_id=${patent._id}`}
               className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center rounded-bl-lg border border-transparent py-4 text-sm font-medium text-gray-700 hover:text-gray-500"
             >
               <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -131,6 +68,7 @@ function Patent({ patent }) {
     </li>
   )
 }
+
 const recentHires = [
   {
     name: 'Leonard Krasner',
@@ -197,6 +135,19 @@ function classNames(...classes) {
 }
 
 export default function Dashboard() {
+  const [patents, setPatents] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    ;(async () => {
+      const { data } = await axios.get('/api/patents')
+
+      console.log(data)
+      setPatents(data)
+      setLoading(false)
+    })()
+  }, [])
+
   return (
     <>
       <Head>
@@ -257,10 +208,23 @@ export default function Dashboard() {
                   </div>
                 </section>
 
+                <h3 className="mt-5 text-lg font-medium leading-6 text-gray-900">
+                  Notifications powered by
+                  <a
+                    href="https://www.push.org/"
+                    target="_blank"
+                    className="ml-1 font-bold text-pink-600 hover:text-pink-500"
+                  >
+                    Push Protocol
+                  </a>
+                </h3>
+                <PushProtocol />
+
                 <div className="mt-10 border-b border-gray-200 pb-5">
                   <h3 className="text-lg font-medium leading-6 text-gray-900">
                     Patent Applications
                   </h3>
+
                   <p className="mt-2 max-w-4xl text-sm text-gray-500">
                     Verify the patents listed in here to get rewarded. Get more
                     rewards for being the verifier.
@@ -269,14 +233,20 @@ export default function Dashboard() {
 
                 {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <ul
-                    role="list"
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
-                  >
-                    <Patent patent={patent} />
-                    <Patent patent={patent} />
-                    <Patent patent={patent} />
-                  </ul>
+                  {loading ? (
+                    <div className="mt-20 flex items-center justify-center">
+                      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+                    </div>
+                  ) : (
+                    <ul
+                      role="list"
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+                    >
+                      {patents.map((patent) => (
+                        <Patent key={patent.email} patent={patent} />
+                      ))}
+                    </ul>
+                  )}
                 </section>
 
                 <div className="mt-10 border-b border-gray-200 pb-5">
@@ -290,14 +260,20 @@ export default function Dashboard() {
 
                 {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <ul
-                    role="list"
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
-                  >
-                    <Patent patent={patent} />
-                    <Patent patent={patent} />
-                    <Patent patent={patent} />
-                  </ul>
+                  {loading ? (
+                    <div className="mt-20 flex items-center justify-center">
+                      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+                    </div>
+                  ) : (
+                    <ul
+                      role="list"
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+                    >
+                      {patents.slice(0, 3).map((patent) => (
+                        <Patent key={patent.email} patent={patent} />
+                      ))}
+                    </ul>
+                  )}
                 </section>
 
                 <div className="mt-10 border-b border-gray-200 pb-5">
@@ -311,14 +287,20 @@ export default function Dashboard() {
 
                 {/* Patent Applications panel */}
                 <section aria-labelledby="quick-links-title">
-                  <ul
-                    role="list"
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
-                  >
-                    <Patent patent={patent} />
-                    <Patent patent={patent} />
-                    <Patent patent={patent} />
-                  </ul>
+                  {loading ? (
+                    <div className="mt-20 flex items-center justify-center">
+                      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+                    </div>
+                  ) : (
+                    <ul
+                      role="list"
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
+                    >
+                      {patents.slice(0, 1).map((patent) => (
+                        <Patent key={patent.email} patent={patent} />
+                      ))}
+                    </ul>
+                  )}
                 </section>
               </div>
 

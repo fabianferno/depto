@@ -7,7 +7,7 @@ export default function Huddle({
   meetCode,
   height = '600',
   width = '100%',
-  title = 'Start a DEPTO Huddle 📞',
+  title = 'Call for a DAO wide Huddle 📞',
 }) {
   const [open, setOpen] = useState(false)
 

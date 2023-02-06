@@ -19,9 +19,18 @@ const user = {
 }
 let navigation = [
   { name: 'Dashboard', href: 'dashboard', current: true, memberOnly: true },
-  { name: 'Patent', href: 'patent', current: false, memberOnly: false },
-  { name: 'New', href: 'create-patent', current: false, memberOnly: false },
-  { name: 'Directory', href: 'directory', current: false, memberOnly: false },
+  {
+    name: 'Apply for a Patent',
+    href: 'create-patent',
+    current: false,
+    memberOnly: false,
+  },
+  {
+    name: 'Patent Directory',
+    href: 'directory',
+    current: false,
+    memberOnly: false,
+  },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
