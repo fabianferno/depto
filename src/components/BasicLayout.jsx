@@ -1,14 +1,14 @@
-import backgroundImage from '@/images/background-features.jpg'
 import Image from 'next/image'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useAccount } from 'wagmi'
+import axios from 'axios'
+
+import { useRouter } from 'next/router'
 
 import logoDepto from '@/images/depto-white.png'
 
-import { Tab } from '@headlessui/react'
-import { Container } from '@/components/Container'
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const user = {
@@ -18,10 +18,10 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 let navigation = [
-  { name: 'Dashboard', href: 'dashboard', current: true },
-  { name: 'Patent', href: 'patent', current: false },
-  { name: 'New', href: 'create-patent', current: false },
-  { name: 'Directory', href: 'directory', current: false },
+  { name: 'Dashboard', href: 'dashboard', current: true, memberOnly: true },
+  { name: 'Patent', href: 'patent', current: false, memberOnly: false },
+  { name: 'New', href: 'create-patent', current: false, memberOnly: false },
+  { name: 'Directory', href: 'directory', current: false, memberOnly: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -34,6 +34,34 @@ function classNames(...classes) {
 }
 
 export function BasicLayout({ children, title }) {
+  const router = useRouter()
+  const { address, isConnected } = useAccount()
+  const [isMember, setIsMember] = useState(false)
+
+  useEffect(() => {
+    ;(async () => {
+      let dao_members_list = await axios
+        .get('/api/members')
+        .then((res) => {
+          return res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+      if (address && !dao_members_list.includes(address) && isConnected) {
+        console.log('not a member')
+        setIsMember(false)
+      } else {
+        setIsMember(true)
+      }
+
+      // if (router.pathname !== '/directory' && !isConnected) {
+      //   router.push('/directory')
+      // }
+    })()
+  }, [address, router, isMember, isConnected])
+
   return (
     <>
       <div className="min-h-full">
@@ -57,7 +85,10 @@ export function BasicLayout({ children, title }) {
                       </a>
                       <div className="hidden lg:ml-10 lg:block">
                         <div className="flex space-x-4">
-                          {navigation.map((item) => (
+                          {(isMember
+                            ? navigation
+                            : navigation.filter((item) => !item.memberOnly)
+                          ).map((item) => (
                             <a
                               key={item.name}
                               href={item.href}

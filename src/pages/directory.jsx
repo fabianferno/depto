@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { LinkIcon } from '@heroicons/react/20/solid'
 import { BasicLayout } from '@/components/BasicLayout'
 

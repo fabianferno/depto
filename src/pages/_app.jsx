@@ -60,6 +60,7 @@ export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
+        coolMode
         chains={chains}
         theme={lightTheme({
           accentColor: 'white',

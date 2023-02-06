@@ -13,36 +13,11 @@ import {
 import { PaperClipIcon } from '@heroicons/react/20/solid'
 
 export default function CreatePatent() {
-  const { config } = usePrepareContractWrite({
-    address: '0x16CBC6Cb38D19B73A3b545109c70b2031d20EA37',
-    abi: [
-      {
-        name: 'mint',
-        type: 'function',
-        stateMutability: 'nonpayable',
-        inputs: [],
-        outputs: [],
-      },
-    ],
-    functionName: 'mint',
-    args: [metadataUrl],
-  })
-
-  const { data, write } = useContractWrite(config)
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  })
-
-  const client = new NFTStorage({
-    token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEFkNDIyMzUxMzA4ZWVFOTA0MGFCZmU0ZWI2YTgyQUZCQ2JlNzAyZDAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY3NTYyNzA5MDgxNCwibmFtZSI6ImRlcHRvIn0.7dnLVH2haC29EbX8fKxJ2b-I_v9uAaaAqaY5-EnGKzo',
-  })
   const [acknowledge, setAcknowledge] = useState(false)
   const [metadataUrl, setMetadataUrl] = useState('')
   const [attachment, setAttachment] = useState(null)
   const [uploading, setUploading] = useState(false)
   const [uploadingPatent, setUploadingPatent] = useState(false)
-
   const [patent, setPatent] = useState({
     title: '',
     classNo: '',
@@ -61,7 +36,32 @@ export default function CreatePatent() {
     zip: '',
     attachment: '',
     attachmentCid: '',
-    date: new Date().toISOString(),
+  })
+
+  const { config } = usePrepareContractWrite({
+    address: '0x16CBC6Cb38D19B73A3b545109c70b2031d20EA37',
+    abi: [
+      {
+        name: 'mint',
+        type: 'function',
+        stateMutability: 'nonpayable',
+        inputs: [],
+        outputs: [],
+      },
+    ],
+    functionName: 'mint',
+    args: [metadataUrl],
+    enabled: Boolean(metadataUrl),
+  })
+
+  const { data, write } = useContractWrite(config)
+  const { isLoading, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  })
+
+  const client = new NFTStorage({
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEFkNDIyMzUxMzA4ZWVFOTA0MGFCZmU0ZWI2YTgyQUZCQ2JlNzAyZDAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY3NTYyNzA5MDgxNCwibmFtZSI6ImRlcHRvIn0.7dnLVH2haC29EbX8fKxJ2b-I_v9uAaaAqaY5-EnGKzo',
   })
 
   async function uploadImage(event) {
@@ -83,7 +83,16 @@ export default function CreatePatent() {
   async function uploadPatent() {
     setUploadingPatent(true)
     const cid = await client.storeBlob(
-      new Blob([JSON.stringify(patent, null, 2)], { type: 'application/json' })
+      new Blob(
+        [
+          JSON.stringify(
+            { ...patent, date: new Date().toISOString() },
+            null,
+            2
+          ),
+        ],
+        { type: 'application/json' }
+      )
     )
     setMetadataUrl('ipfs://' + cid)
     setUploadingPatent(false)
@@ -112,12 +121,12 @@ export default function CreatePatent() {
               <form action="#" method="POST">
                 <div className="shadow sm:overflow-hidden sm:rounded-md">
                   <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
-                    <p className="mt-1 text-sm text-gray-600">
+                    {/* <p className="mt-1 text-sm text-gray-600">
                       {JSON.stringify(patent, null, 2)}
                     </p>
                     <p className="mt-1 text-sm text-gray-600">
                       Metadata URL {JSON.stringify(metadataUrl, null, 2)}
-                    </p>
+                    </p> */}
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-6 sm:col-span-4">
                         <label
@@ -664,9 +673,7 @@ export default function CreatePatent() {
                     <button
                       disabled={metadataUrl === ''}
                       type="button"
-                      onClick={() => {
-                        write()
-                      }}
+                      onClick={() => write?.()}
                       className={`inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-100`}
                     >
                       {isLoading ? 'Minting Patent...' : 'Mint Patent'}
