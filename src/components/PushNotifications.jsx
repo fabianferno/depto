@@ -11,7 +11,7 @@ export function PushProtocol() {
   useEffect(() => {
     ;(async () => {
       const notifications = await PushAPI.user.getFeeds({
-        user: 'eip155:5:0xD8634C39BBFd4033c0d3289C4515275102423681', // user address in CAIP
+        user: 'eip155:5:0xdA9502932Ff895b0107Fc7944B77E48EBe32c808', // user address in CAIP
         env: 'staging',
       })
 
