@@ -49,6 +49,10 @@ Depto is a platform that replaces traditional patent verification and storage pr
 5. The validated patent is stored as a storage deal by a Storage Provider (SP).
 6. The SP claims his rewards and the patent NFT is minted to the patent applicant.
 
+![Screenshot 2023-02-05 225236](https://user-images.githubusercontent.com/57835412/217434327-111605c4-dab1-49e4-8e91-35c04264617c.png)
+![Screenshot 2023-02-05 225155](https://user-images.githubusercontent.com/57835412/217434339-1ed6d1ff-f7cf-461e-87a2-5682ad0a63f8.png)
+![Screenshot 2023-02-05 225216](https://user-images.githubusercontent.com/57835412/217434353-7ab12bc6-43be-419b-92f7-d6772066349e.png)
+
 
 ## Contributions
 We welcome contributions to the development of Depto. If you have any ideas or suggestions, feel free to open an issue or submit a pull request.
