@@ -53,6 +53,21 @@ Depto is a platform that replaces traditional patent verification and storage pr
 ![Screenshot 2023-02-05 225155](https://user-images.githubusercontent.com/57835412/217434339-1ed6d1ff-f7cf-461e-87a2-5682ad0a63f8.png)
 ![Screenshot 2023-02-05 225216](https://user-images.githubusercontent.com/57835412/217434353-7ab12bc6-43be-419b-92f7-d6772066349e.png)
 
+# Contract Flows
+```
+Governor Contract (DAO)
+mapping(address=>bool) isDAOMember - Is checked true when a member is added to the DAO.
+mapping(address=>uint256[]) userToPatentClaims - maps the user to all dealIDs created by the user.
+proposePatent(payable)  - callable by anyone, even members of DAO. On call, a new patent request is created. Which will be verified and voted by the DAO. Mints a claim NFT to the proposer as a proof of application.
+raiseFalsePatentClaim(payable) - callable by anyone. It checks the date of both claims… if not valid, rejects. On successful claim, the money is returned. Or else is retained by the DAO.
+execute - callable by anyone. Executes the proposal
+proposeNewMember - Callable only by members of the DAO. On successful vote, a new member is added to the DAO.
+voteProposal - callable only by members of the DAO. Each vote has only 1 weight no matter how many tokens you hold.
+
+listPatents - callable by anyone, lists DAO approved patents.
+ 
+```
+
 
 ## Contributions
 We welcome contributions to the development of Depto. If you have any ideas or suggestions, feel free to open an issue or submit a pull request.
