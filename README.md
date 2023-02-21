@@ -8,6 +8,7 @@ A decentralized patent provisioning DAO for secure and transparent verification 
 
 
 DEPTO CONTRACTS: https://github.com/gabrielantonyxaviour/depto_contracts
+ 
 LIVE DEMO: https://depto.fabianferno.com
 
 ## Introduction
